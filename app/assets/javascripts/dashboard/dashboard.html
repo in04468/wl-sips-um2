@@ -1,0 +1,67 @@
+<div class="banner banner-sm">
+	<div class="bg-image zoom focus-bottom-left"></div>
+</div>
+<div class="page-header page-header-sm">
+	<div class="header-content">
+		<h1>Dashboard</h1>
+		<div class="header-textbox">
+			<p>Welcome, {{user.name}} !</p>
+		</div>
+	</div>
+</div>
+<div class="row page-section">
+	<div class="col-md-1"></div>
+	<div class="col-md-7" data-ng-cloak>
+		<form name="form" data-ng-init="retriveUserProfile()">
+			<p align="center">
+				<b><i>Personal Details</i></b>
+			</p>
+			<!--p>{{user.id}}</p-->
+			<div class="form-group">
+				<label for="first_name">First Name: </label> {{contact.FirstName}}<br />
+			</div>
+			<div class="form-group">
+				<label for="last_name">Last Name: </label> {{contact.LastName}}<br />
+			</div>
+			<div class="form-group">
+				<label for="email">Email address: </label> {{contact.Email}} <br />
+			</div>
+			<div class="form-group">
+				<label for="account_id">Account Id: </label> {{contact.AccountId}}<br />
+			</div>
+			<div class="form-group">
+				<label for="activated_on">Activated On: </label>
+				{{contact.Activated_On__c | date:'medium'}}<br />
+			</div>
+			<hr>
+			<p align="center">
+				<b><i>Account Details</i></b>
+			</p>
+			<div class="form-group">
+				<label for="account_name">Account Name: </label> {{account.Name}}<br />
+			</div>
+			<div class="form-group">
+				<label for="phone">Phone: </label> {{account.Phone}}<br />
+			</div>
+			<div class="form-group">
+				<label for="fax">Fax: </label> {{account.Fax}}<br />
+			</div>
+			<div class="form-group">
+				<label for="annual_revenue">Annual Revenue: </label>
+				{{account.AnnualRevenue}}<br />
+			</div>
+			<div class="form-group">
+				<label for="website">Website: </label> {{account.Website}}<br />
+			</div>
+			<div class="form-group">
+				<label for="billing_address">Billing Address: </label>
+				{{account.BillingAddress.street}}, {{account.BillingAddress.city}},
+				{{account.BillingAddress.postalCode}},
+				{{account.BillingAddress.country}}<br />
+			</div>
+			<br />
+			<button class="btn btn-primary" type="submit">Edit</button>
+		</form>
+	</div>
+</div>
+

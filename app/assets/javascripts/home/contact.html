@@ -1,0 +1,119 @@
+<div class="banner banner-sm">
+  <div class="bg-image zoom focus-bottom-left" />
+</div>
+<div class="page-header page-header-sm">
+  <div class="header-content">
+    <h1>How can we help you?</h1>
+    <div class="header-textbox">
+      <p>Whether you are looking for an immediate quote or just want to know more about our capabilities please call us to speak to a member of our team or fill in the below form.</p>
+    </div>
+  </div>
+</div>
+
+<div class="row page-section">
+  <div class="col-md-4 centre">
+    <div class="circle call-us">
+      <div>
+        <p><img src="/assets/images/icons/Call1.png" height="60px"/></p>
+        <span class="callout highlight">CALL US</span><br/>
+        <span class="callout highlight">0203 635 7272</span><br/>
+        <span class="callout highlight">0203 635 7194</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1" />
+  <div class="col-md-7">
+    <script>
+      var onloadCallback = function() {
+        //alert("grecaptcha is ready!");
+        grecaptcha.render('captcha_element', {
+          'sitekey' : document.registrationform.siteKey.value
+        });
+      };
+      function checkCaptcha() {
+        //alert("form submitted");
+        var captaRes = grecaptcha.getResponse();
+        if (captaRes == '') {
+          alert("Please resolve the captcha and submit!");
+          return false;
+        } else {
+          var theUrl = location.href.substr(0, location.href.indexOf("/")) + "verifycaptcha?response="+captaRes;
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open( "GET", theUrl, false );
+          xmlHttp.send( null );
+          var resp = JSON.parse(xmlHttp.responseText);
+          if (resp.success) {
+            //alert("Captcha Accepted! - " + resp.success);
+            return true;
+          } else {
+            alert("Incorrect captcha, Please resolve the captcha correctly and submit!");
+            return false;
+          }
+        }
+      }
+    </script>
+    <form name="registrationform" onsubmit="return checkCaptcha()" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" target="_self" method="POST">
+
+      <input type=hidden name="oid" value="{{environment.webtoleadId}}">
+      <input type=hidden name="retURL" value="{{environment.salesforceCallbackUrl}}">
+      <input type=hidden name="siteKey" value="{{environment.captchaSiteKey}}">
+      <input type=hidden name="Campaign_ID" value="70158000000514v">
+      <input type=hidden name="LeadSource" value="Web">
+      <fieldset>
+        <div class="form-group" ng-class="{'has-error': registrationform.first_name.$invalid && !registrationform.first_name.$pristine}">
+          <label for="first_name">First Name</label>
+          <input id="first_name" class="form-control" data-ng-model="register.firstname" maxlength="40" name="first_name" size="20" type="text" required />
+          <span ng-show="registrationform.first_name.$error.required && !registrationform.first_name.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.last_name.$invalid && !registrationform.last_name.$pristine}">
+          <label for="last_name">Last Name</label>
+          <input id="last_name" class="form-control" data-ng-model="register.lastname" maxlength="80" name="last_name" size="20" type="text" required />
+          <span ng-show="registrationform.last_name.$error.required && !registrationform.last_name.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.company.$invalid && !registrationform.company.$pristine}">
+          <label for="company">Company</label>
+          <input id="company" class="form-control" data-ng-model="register.company" maxlength="40" name="company" size="20" type="text" required />
+          <span ng-show="registrationform.company.$error.required && !registrationform.company.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.email.$invalid && !registrationform.email.$pristine}">
+          <label for="email">Email</label>
+          <input id="email" class="form-control" data-ng-model="register.email" maxlength="80" name="email" size="20" type="email" required />
+          <span ng-show="registrationform.email.$error.required && !registrationform.email.$pristine" class="help-inline">Required</span>
+          <span ng-show="registrationform.email.$error.email" class="help-inline">Please enter a valid email address</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.zip.$invalid && !registrationform.zip.$pristine}">
+          <label for="zip">Post code:</label>
+          <input id="zip" class="form-control" data-ng-model="register.postcode" maxlength="10" name="zip" size="20" type="text" required />
+          <span ng-show="registrationform.zip.$error.required && !registrationform.zip.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.phone.$invalid && !registrationform.phone.$pristine}">
+          <label for="phone">Tel No:</label>
+          <input id="phone" class="form-control" data-ng-model="register.telephone" maxlength="14" name="phone" size="20" type="text" ng-pattern="/^[0-9 ]{1,14}$/" required />
+          <span ng-show="registrationform.phone.$error.pattern && !registrationform.phone.$pristine" class="help-inline">Please enter only numbers</span>
+          <span ng-show="registrationform.phone.$error.required && !registrationform.phone.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.description.$invalid && !registrationform.description.$pristine}">
+          <label for="description">Your Enquiry:</label>
+          <textarea id="description" class="form-control" data-ng-model="register.enquiry" rows="5" maxlength="1000" name="description" size="20" type="text" required />
+          <span ng-show="registrationform.description.$error.required && !registrationform.description.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="checkbox">
+          <label><input id="HasOptedOutOfEmail" data-ng-model="register.optout" name="HasOptedOutOfEmail" type="checkbox" value="1">Information that you provide to us may be used to send you marketing communications from Worldline and other Atos Group Companies about other services offered by the Atos Group. If you want to opt out of such communications please tick this box.</label>
+        </div>
+        <br/>
+        <div id="captcha_element"></div>
+        <br/>
+        <button class="btn btn-primary" data-ng-disabled="registrationform.$invalid" type="submit">Submit</button>
+      </fieldset>
+    </form>
+    <script src="https://www.google.com/recaptcha/api.js?hl=en-GB&onload=onloadCallback&render=explicit" async defer></script>
+  </div>
+</div>
+<div class="contact-us">
+  <div class="contact-us-semicircle">
+    <div>
+      <p class="callout highlight">Contact Us</p>
+      <p class="callout-sm"><a href="mailto:paymentacceptance@worldline.com">CLICK HERE</a></p>
+    </div>
+  </div>
+</div>

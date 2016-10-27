@@ -1,0 +1,28 @@
+<div class="banner banner-sm">
+  <div class="bg-image zoom focus-bottom-left" />
+</div>
+<div class="page-header page-header-sm">
+  <div class="header-content">
+    <h1>Log In</h1>
+  </div>
+</div>
+<div class="row page-section">
+  <div class="col-md-1" />
+  <div class="col-md-7">
+    <form name="form">
+      <fieldset>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" data-ng-model="credentials.email" placeholder="E-Mail" required /><br />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" data-ng-model="credentials.password" placeholder="Password" required /><br />
+          <button class="btn btn-primary" data-ng-disabled="form.$invalid" data-ng-click="login(credentials)">Log In</button>
+          &nbsp;&nbsp;&nbsp;<a href="#/forgot">Forgot Password?</a>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+

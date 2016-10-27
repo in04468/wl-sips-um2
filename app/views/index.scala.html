@@ -1,0 +1,116 @@
+@()<!DOCTYPE html>
+<html>
+  <head>
+    <title data-ng-bind="pageTitle"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")" />
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/angular-notify/angular-notify.css")" />
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")" />
+    
+    @*-- Add More CSS here -- *@
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")" />
+    @*-- AngularJS bootstrap -- *@    
+    <script data-main="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript" src="@routes.Assets.versioned("lib/requirejs/require.js")"></script>    
+  </head>
+  <body>
+
+    @*-- Google Tag Manager script -- *@
+    @*-- Dev instance GTM-PH77MZ -- *@
+    @*-- Prod instance GTM-NJ58WK -- *@
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJ58WK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+      j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NJ58WK');
+    </script>
+    @*-- Lead forensics -- *@
+    <script type="text/javascript" src="http://www.33-trk-srv.com/js/81611.js" ></script>
+    <noscript><img src="http://www.33-trk-srv.com/81611.png" style="display:none;" /></noscript>
+    @*-- Header -- *@
+    <nav class="navbar navbar-transparent" data-ng-controller="HeaderCtrl" data-ng-cloak>
+      <div class="container" data-ng-switch="!!user" data-ng-cloak>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-body" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#/" class="navbar-brand"><img src="/assets/images/logos/Worldline-E-Payment-Services_White_50px.png" alt="..."></a>
+        </div>
+        <div class="collapse navbar-collapse" id="header-navbar-body">
+          <ul class="nav navbar-nav">
+            <li><a href="#/payment">Payment Acceptance</a></li>
+            <li><a href="#/pricing">Pricing</a></li>
+            <li><a href="#/aboutus">About Us</a></li>
+            <li><a href="#/contact">Contact</a></li>
+            <li><a href="#/faq">FAQ</a></li>
+            <!--li><a href="#/register">Register</a></li-->
+
+@*-- Don't expose POC functionality
+            <!--li><a href="#/contacts">Salesforce Contacts</a></li-->
+-- *@
+          </ul>
+@*-- Don't expose login functionality -- *@
+          <div data-ng-switch-when="true">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-user"></span> {{user.name}}
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <!--li><a href="#/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li-->
+                  <li>
+                    <a href="" data-ng-click="logout()">
+                      <span class="glyphicon glyphicon-off"></span> Logout
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div data-ng-switch-when="false">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#/login">Login</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+    @* -- Main Content -- *@
+    <div class="container" data-ng-cloak>
+      <div data-ng-view></div>
+    </div>
+    @*-- Footer -- *@
+    <footer data-ng-controller="FooterCtrl" data-ng-cloak>
+      <div class="navbar navbar-transparent">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-navbar-body">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand">
+              <ul class="nav navbar-left">
+                <li><a id="footer-wl-link" href="http://uk.worldline.com" target="_blank">© Worldline 2016 all rights reserved</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="navbar-collapse collapse" id="footer-navbar-body">
+            <ul class="nav nav-justified">
+              <li><a href="#/termsofuse">Terms of use</a></li>
+              <li><a href="#/privacypolicy">Privacy policy</a></li>
+              <li><a href="#/cookiepolicy">Cookie policy</a></li>
+              <li><a href="#/contact">Contact us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<div class="banner banner-sm">
+  <div class="bg-image zoom focus-bottom-right" />
+</div>
+<div class="page-header page-header-sm">
+  <div class="header-content">
+    <h1>Payments the Worldline way</h1>
+    <div class="header-textbox">
+      <p>The Worldline way is about your business. Making sure we understand what you want and need by providing you with a dedicated account manager. Delivering your success through the right complement of our solutions.</p>
+    </div>
+  </div>
+</div>
+<div class="row page-section">
+  <div class="col-md-4 centre">
+    <div class="circle">
+      <div>
+        <span class="callout">From<br/><span class="callout-lg highlight">£17.99</span><br/>for 220 transactions per month</span>
+      </div>
+    </div>
+    <h4>No hidden fees</h4>
+    <p>No joining fees<br/>No set-up charges</p>
+    <p>Our pricing is geared to every size of business. We have no set up fees, and no hidden costs. You just pay for what you choose and use. Typically – £17.99 for 220 transactions per month.</p> 
+  </div>
+  <div class="col-md-1" />
+  <div class="col-md-7">
+    <script>
+      var onloadCallback = function() {
+        //alert("grecaptcha is ready!");
+        grecaptcha.render('captcha_element', {
+          'sitekey' : document.registrationform.siteKey.value
+        });
+      };
+      function checkCaptcha() {
+        //alert("form submitted");
+        var captaRes = grecaptcha.getResponse();
+        if (captaRes == '') {
+          alert("Please resolve the captcha and submit!");
+          return false;
+        } else {
+          var theUrl = location.href.substr(0, location.href.indexOf("/")) + "verifycaptcha?response="+captaRes;
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open( "GET", theUrl, false );
+          xmlHttp.send( null );
+          var resp = JSON.parse(xmlHttp.responseText);
+          if (resp.success) {
+            //alert("Captcha Accepted! - " + resp.success);
+            return true;
+          } else {
+            alert("Incorrect captcha, Please resolve the captcha correctly and submit!");
+            return false;
+          }
+        }
+      }
+    </script>
+    <p>But we’re also flexible. We can give you a bespoke quote to match your processing capacity.</p>
+    <form name="registrationform" onsubmit="return checkCaptcha()" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" target="_self" method="POST">
+
+      <input type=hidden name="oid" value="{{environment.webtoleadId}}">
+      <input type=hidden name="retURL" value="{{environment.salesforceCallbackUrl}}">
+      <input type=hidden name="siteKey" value="{{environment.captchaSiteKey}}">
+      <input type=hidden name="Campaign_ID" value="70158000000514q">
+      <input type=hidden name="LeadSource" value="Web">
+      <fieldset>
+        <div class="form-group" ng-class="{'has-error': registrationform.first_name.$invalid && !registrationform.first_name.$pristine}">
+          <label for="first_name">First Name:</label>
+          <input id="first_name" class="form-control" data-ng-model="register.firstname" maxlength="40" name="first_name" size="20" type="text" required />
+          <span ng-show="registrationform.first_name.$error.required && !registrationform.first_name.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.last_name.$invalid && !registrationform.last_name.$pristine}">
+          <label for="last_name">Last Name:</label>
+          <input id="last_name" class="form-control" data-ng-model="register.lastname" maxlength="80" name="last_name" size="20" type="text" required />
+          <span ng-show="registrationform.last_name.$error.required && !registrationform.last_name.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.company.$invalid && !registrationform.company.$pristine}">
+          <label for="company">Company:</label>
+          <input id="company" class="form-control" data-ng-model="register.company" maxlength="40" name="company" size="20" type="text" required />
+          <span ng-show="registrationform.company.$error.required && !registrationform.company.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.email.$invalid && !registrationform.email.$pristine}">
+          <label for="email">Email:</label>
+          <input id="email" class="form-control" data-ng-model="register.email" maxlength="80" name="email" size="20" type="email" required />
+          <span ng-show="registrationform.email.$error.required && !registrationform.email.$pristine" class="help-inline">Required</span>
+          <span ng-show="registrationform.email.$error.email" class="help-inline">Please enter a valid email address</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.phone.$invalid && !registrationform.phone.$pristine}">
+          <label for="phone">Tel No:</label>
+          <input id="phone" class="form-control" data-ng-model="register.telephone" maxlength="14" name="phone" size="20" type="text" ng-pattern="/^[0-9 ]{1,14}$/" required />
+          <span ng-show="registrationform.phone.$error.pattern && !registrationform.phone.$pristine" class="help-inline">Please enter only numbers</span>
+          <span ng-show="registrationform.phone.$error.required && !registrationform.phone.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.zip.$invalid && !registrationform.zip.$pristine}">
+          <label for="zip">Post code:</label>
+          <input id="zip" class="form-control" data-ng-model="register.postcode" maxlength="10" name="zip" size="20" type="text" required />
+          <span ng-show="registrationform.zip.$error.required && !registrationform.zip.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.cardturnover.$invalid && !registrationform.cardturnover.$pristine}">
+          <label for="00N5800000A0eNM">Card turnover per annum:</label>
+          <input id="00N5800000A0eNM" ng-attr-name="cardturnover" class="form-control" data-ng-model="register.cardturnover" maxlength="12" name="00N5800000A0eNM" size="20" type="text" ng-pattern="/^[0-9]{1,12}$/" required />
+          <span ng-show="registrationform.cardturnover.$error.pattern && !registrationform.cardturnover.$pristine" class="help-inline">Please enter a valid number</span>
+          <span ng-show="registrationform.cardturnover.$error.required && !registrationform.cardturnover.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': registrationform.numtransactions.$invalid && !registrationform.numtransactions.$pristine}">
+          <label for="00N58000008Lnq8">No. of transactions per annum:</label>
+          <input id="00N58000008Lnq8" ng-attr-name="numtransactions" class="form-control" data-ng-model="register.numtransactions" maxlength="12" name="00N58000008Lnq8" size="20" type="text" ng-pattern="/^[0-9]{1,12}$/" required />
+          <span ng-show="registrationform.numtransactions.$error.pattern && !registrationform.numtransactions.$pristine" class="help-inline">Please enter a valid number</span>
+          <span ng-show="registrationform.numtransactions.$error.required && !registrationform.numtransactions.$pristine" class="help-inline">Required</span>
+        </div>
+        <div class="checkbox">
+          <label><input id="HasOptedOutOfEmail" data-ng-model="register.optout" name="HasOptedOutOfEmail" type="checkbox" value="1">Information that you provide to us may be used to send you marketing communications from Worldline and other Atos Group Companies about other services offered by the Atos Group. If you want to opt out of such communications please tick this box.</label>
+        </div>
+        <br/>
+        <div id="captcha_element"></div>
+        <br/>
+        <button class="btn btn-primary" data-ng-disabled="registrationform.$invalid" type="submit">REQUEST QUOTE</button>
+      </fieldset>
+    </form>
+    <script src="https://www.google.com/recaptcha/api.js?hl=en-GB&onload=onloadCallback&render=explicit" async defer></script>
+  </div>
+</div>
+<div class="contact-us">
+  <div class="contact-us-semicircle">
+    <div>
+      <p class="callout highlight">Contact Us</p>
+      <p class="callout-sm"><a href="/#/contact">CLICK HERE</a></p>
+    </div>
+  </div>
+</div>

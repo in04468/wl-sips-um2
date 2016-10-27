@@ -1,0 +1,40 @@
+<div class="banner banner-sm">
+  <div class="bg-image zoom focus-bottom-left" />
+</div>
+<div class="page-header page-header-sm" data-ng-init="retriveContact()">
+  <div class="header-content">
+    <h1>{{pageTitle}}</h1>
+  </div>
+</div>
+
+<div class="row page-section">
+  <div class="col-md-1" />
+  <div class="col-md-7" ng-app="app" data-ng-controller="UserCtrl" data-ng-cloak>
+    <form name="form" ng-submit="setUserPasswd()">
+      <div data-ng-if="validToken">
+        <fieldset>
+          <div class="form-group">
+            <label for="first_name">Name: </label>
+            {{contact.FirstName}} {{contact.LastName}}<br/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address: </label>
+            {{contact.Email}} <br/>
+          </div>
+          <div class="form-group">
+            <label for="password">Enter Password</label>
+            <input type="password" class="form-control" data-ng-model="$parent.credentials.password" placeholder="Password" ng-minlength="8" required />
+          </div>
+          <div class="form-group">
+            <label for="cnfpassword">Confirm Password</label>
+            <input type="password" class="form-control" data-ng-model="$parent.credentials.cnfpassword" placeholder="Confirm Password" ng-minlength="8" required /><br />
+            <button class="btn btn-primary" data-ng-disabled="form.$invalid" type="submit">{{submitButtonCaption}}</button>
+          </div>
+        </fieldset>
+      </div>
+      <div data-ng-if="!validToken">
+        {{message}}
+      </div>
+    </form>
+  </div>
+</div>

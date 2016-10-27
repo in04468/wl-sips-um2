@@ -1,0 +1,22 @@
+<div class="banner banner-navbar">
+  <div class="bg-image" />
+</div>
+<div class="page-section centre">
+  <img class="media-object" src="/assets/images/icons/FAQ.png" alt="...">
+</div>
+
+<div class="page-section" ng-app="app" data-ng-controller="FaqCtrl">
+  <div class="faq" ng-repeat="faq in faqs">
+    <a ng-click="toggleFaq(faq)" ng-class="{'visibleFaq': faq.visible}">{{faq.question}}<span class="glyphicon" ng-class="{'glyphicon-chevron-down': !faq.visible, 'glyphicon-chevron-up': faq.visible}" aria-hidden="true"></span></a>
+    <p ng-show="faq.visible" style="white-space: pre-wrap;">{{faq.answer}}</p>
+  </div>
+</div>
+
+<div class="contact-us">
+  <div class="contact-us-semicircle">
+    <div>
+      <p class="callout highlight">Contact Us</p>
+      <p class="callout-sm"><a href="/#/contact">CLICK HERE</a></p>
+    </div>
+  </div>
+</div>

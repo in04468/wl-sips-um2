@@ -1,0 +1,509 @@
+/* Choice of bootstrap libraries.
+   Can use the base _bootstrap shipped with the seed which allows variables to be overriden and mixins used:
+     @import "base/_bootstrap.less";
+   Or just include the library bootstrap downloaded with the webjar:
+     @import "lib/bootstrap/less/bootstrap.less";
+   Or just reference the compiled css in index.scala.html
+     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")" />
+
+@import "lib/bootstrap/less/bootstrap.less";
+*/
+
+@font-face {
+    font-family: 'Stag Medium';
+    src: url('/assets/fonts/stag-medium-webfont.eot');
+    src: url('/assets/fonts/stag-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/stag-medium-webfont.woff') format('woff'),
+         url('/assets/fonts/stag-medium-webfont.ttf') format('truetype'),
+         url('/assets/fonts/stag-medium-webfont.svg#StagMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Stag Book';
+    src: url('/assets/fonts/stag-book-webfont.eot');
+    src: url('/assets/fonts/stag-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/stag-book-webfont.woff') format('woff'),
+         url('/assets/fonts/stag-book-webfont.ttf') format('truetype'),
+         url('/assets/fonts/stag-book-webfont.svg#StagMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@worldline-color: #0066A1;
+@worldline-grey: #808080;
+@bg-image-height-lg: 460px;
+@bg-image-height-sm: 300px;
+@navbar-height: 60px;
+@footer-height: 60px;
+@semicircle-diameter: 200px;
+@circle-diameter: 200px;
+
+html {
+  position: relative;
+  min-height: 100%;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  line-height: 1.2;
+  margin-bottom: @footer-height;
+  font-family: Stag Book;
+  font-size: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Stag Medium;
+}
+
+.highlight {
+  font-family: Stag Medium;
+  font-weight: bold;
+}
+.txt-xs {
+  font-size: 10px;
+}
+.txt-sm {
+  font-size: 12px;
+}
+.txt-md {
+  font-size: 14px;
+}
+.txt-lg {
+  font-size: 20px;
+}
+.txt-xl {
+  font-size: 40px;
+}
+
+.callout-sm {
+  font-size: 12px;
+}
+.callout {
+  font-size: 20px;
+}
+.callout-lg {
+  font-size: 40px;
+}
+.callout-grey {
+  color: @worldline-grey!important;
+}
+
+@media (min-width: 766px) and (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 766px) {
+    body {
+      line-height: 1.2;
+      margin-bottom: @footer-height;
+      font-family: Stag Book;
+      font-size: 14px;
+    }
+    .txt-xs {
+      font-size: 14px;
+    }
+    .txt-sm {
+      font-size: 16px;
+    }
+    .txt-md {
+      font-size: 18px;
+    }
+    .txt-lg {
+      font-size: 24px;
+    }
+    .txt-xl {
+      font-size: 44px;
+    }
+}
+
+.navbar {
+  min-height: @navbar-height;
+  border: 0;
+  margin-bottom: 0px;
+  z-index:1;
+  .navbar-brand {
+    padding-top:5px;
+    padding-bottom:5px;
+    img {
+      height:50px;
+    }
+  }
+  .nav {
+    li a {
+      font-family: Stag Medium;
+      font-size: 105%;
+      padding-top: 20px;
+//      padding-bottom: 20px;
+      color: white;
+      font-weight: bold;
+      &:hover {
+        background-color: @worldline-color;
+        opacity: 0.9;
+      }
+      &:focus {
+        background-color: @worldline-color;
+        opacity: 0.9;
+      }
+    }
+  }
+  .navbar-toggle {
+    background-color: @worldline-color;
+    border-width: 3px;
+    border-style: solid;
+    border-color: white;
+    .icon-bar {
+      background-color: white;
+    }
+  }
+}
+
+.dropdown-menu {
+  background-color: @worldline-color;
+  >li>a {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+#footer-wl-link {
+  padding-top:15px;
+}
+
+@media only screen and (max-width: 766px) {
+  .navbar {
+    background-color: @worldline-color;
+    min-height: @navbar-height;
+  }
+  .collapsing, .in {background-color: @worldline-color;}
+  .collapsing ul li a, .in ul li a {color: white!important;}
+  .collapsing ul li a:hover, .in ul li a:hover {color: #f1f1f1!important;}
+}
+
+@media only screen and (max-width: 450px) {
+  #footer-wl-link {
+    font-size: 0.65em;
+  }
+}
+
+.page-header {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto 0 auto;
+  line-height: 1.5;
+  display: inline-block; /* Required to stop bottom margins collapsing with header-content */
+  border-bottom: 0px;
+  .header-content {
+    padding: 30px 50px 0 50px;
+    h1 {
+      margin-top: 0px;
+      font-size: 36px;
+      color: white;
+    }
+    .header-textbox {
+      background-color: @worldline-color;
+      color: #fff;
+      opacity: 0.9;
+      margin: 20px 0 30px 0;
+      padding: 15px 10% 5px 10%;
+    }
+    .contact-us-semicircle {
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      margin: auto auto 0 auto;
+      color: @worldline-color;
+      background: white;
+      p, a {
+        color: @worldline-color;
+      }
+    }
+    a {
+      color: white;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}
+
+.page-header-lg {
+  height: @bg-image-height-lg - @navbar-height;
+}
+
+.page-header-sm {
+  height: @bg-image-height-sm - @navbar-height;
+}
+
+.banner {
+  position: absolute;
+  max-width: 1200px;
+  width:100%;
+  margin-left: -30px;
+  top: 0;
+  overflow:hidden;
+/*  background-image: url(/assets/images/banners/WL_Web_Banner1200x460px.jpg);
+  background-position: left bottom;
+  background-size: cover;
+*/
+}
+
+.banner-lg {
+  height: @bg-image-height-lg;
+}
+
+.banner-sm {
+  height: @bg-image-height-sm;
+}
+
+.banner-navbar {
+  height: @navbar-height;
+}
+
+.bg-image {
+  width:100%;
+  height:100%;
+  background-image:url(/assets/images/banners/WL_Web_Banner1200x460px.jpg);
+  background-position: left bottom;
+  background-size:cover;
+}
+
+.zoom {
+  -moz-transform:scale(1.5,1.5);
+  -webkit-transform:scale(1.5,1.5);
+  transform:scale(1.5,1.5);
+}
+
+.focus-top-left {
+  background-position:200px 50px;
+}
+.focus-bottom-left {
+  background-position:200px -210px;
+}
+
+.focus-bottom-right {
+  background-position:-200px -210px;
+}
+.focus-top-right {
+  background-position:-200px 50px;
+}
+
+@media only screen and (max-width: 766px) {
+  .page-header {
+    .header-content {
+      background-color: @worldline-color;
+      padding: 10px 15px 0 15px;
+      .header-textbox {
+        margin: 10px 0 10px 0;
+      }
+    }
+  }
+  .banner {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .banner-lg {
+    height: 200px;
+  }
+  .page-header-lg {
+    height: 140px;
+    .header-content {
+      margin: 160px -15px 0 -15px;
+    }
+  }
+  .banner-sm {
+    height: 60px;
+  }
+  .page-header-sm {
+    height: 60px;
+    .header-content {
+      margin: 20px -15px 0 -15px;
+    }
+  }
+}
+
+@media only screen and (min-width: 766px) and (max-width: 1116px) {
+  .page-header {
+    .header-content {
+      padding: 20px 0 0 0;
+      .header-textbox {
+        margin: 20px 0 30px 0;
+        padding: 10px 5% 10px 5%;
+      }
+    }
+  }
+  .banner {
+    margin-left: -15px;
+  }
+}
+
+.page-section {
+    margin: 20px auto 20px auto;
+}
+
+.logos {
+  margin-top: -15px;
+  img {
+    max-width: 100px;
+    max-height: 50px;
+  }
+}
+
+.centre {
+  text-align: center;
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.contact-us {
+    margin-top: 30px;
+    height: @circle-diameter / 2;
+}
+
+.contact-us-semicircle {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin: auto auto @footer-height auto;
+  height: @semicircle-diameter / 2;
+  width: @semicircle-diameter;
+  border-radius: @semicircle-diameter @semicircle-diameter 0 0;
+  -moz-border-radius: @semicircle-diameter @semicircle-diameter 0 0;
+  -webkit-border-radius: @semicircle-diameter @semicircle-diameter 0 0;
+  color: white;
+  background:@worldline-color;
+  div {
+    position: absolute;
+    bottom: 0px;
+    width: @semicircle-diameter;
+    p, a {
+      line-height: 1.5;
+      color: white;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    p:last-child, a:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.circle {
+  margin: 0 auto;
+  width: @circle-diameter;
+  height: @circle-diameter;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  color: white;
+  background:@worldline-color;
+  position: relative; /* required to get inner div to bottom align */
+  margin-bottom: 30px;
+  div {
+    position: absolute;
+    width: @circle-diameter * 0.7;
+    height: @circle-diameter * 0.7;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    p, a {
+      text-align: center;
+    }
+  }
+}
+
+.call-us {
+  div {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+.form-control {
+  margin-bottom: 5px;
+}
+
+.media {
+  &:first-child {
+    margin-top: 15px;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: @footer-height;
+  background-color: @worldline-color;
+  color: white;
+  .navbar {
+    min-height: @footer-height;
+    .navbar-nav {
+      li a {
+        &:hover {
+          text-decoration:underline;
+        }
+      }
+    }
+  }
+  .navbar-collapse.in {
+    bottom: @footer-height;
+    position: absolute;
+    width:100%;
+  }
+}
+
+#cookieDisclaimer {
+  background-color: @worldline-color;
+  color: #fff;
+  margin: 10px 0 10px 0;
+  padding: 10px 10px 10px 10px;
+  .glyphicon {
+    color: @worldline-color;
+    font-size: 1.5em;
+  }
+  a {
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+.faq {
+  a {
+    display: block;
+    padding: 10px 30px 10px 30px;
+    background-color: @worldline-color;
+    color: white;
+    border-top: 2px solid white;
+    &:hover {
+      text-decoration: none;
+      background-color: lighten(@worldline-color,10%);
+    }
+    span {
+      float: right;
+    }
+  }
+  p {
+    display: block;
+    padding: 20px 30px 15px 30px;
+    border: 1px solid black;
+    margin-bottom: 0px;
+  }
+  .txt-lg
+}
+.visibleFaq {
+  background-color: black!important;
+}
+
+/* AngularJS */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}

@@ -1,0 +1,27 @@
+<body>
+  <div class="page-header">
+    <h1>Salesforce Contacts</h1>
+  </div>
+  <div ng-app="app" data-ng-controller="ContactCtrl" ng-init="success=true">
+    <div data-ng-if="success">
+      <table width="900" border="1" cellpadding="5" style="text-align: center" data-ng-cloak>
+        <tr bgcolor="#808080">
+          <th width="300" style="text-align: center"><strong>Id</strong></th>
+          <th width="150" style="text-align: center"><strong>FirstName</strong></th>
+          <th width="150" style="text-align: center"><strong>LastName</strong></th>
+          <th width="300" style="text-align: center"><strong>Email</strong></th>
+        </tr>
+        <tr ng-repeat="contact in contacts">
+          <td>{{contact.Id}}</td>
+          <td>{{contact.FirstName}}</td>
+          <td>{{contact.LastName}}</td>
+          <td>{{contact.Email}}</td>
+        </tr>
+      </table>
+    </div>
+    <div data-ng-if="!success">
+      There is error fetching the contacts details from Salesforce
+    </div>
+  </div>
+</body>
+
